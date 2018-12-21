@@ -1,8 +1,8 @@
 all: main.go
 	go build $<
 
-run: all
-	./main
+run: main.go
+	go run $<
 
 clean:
 	rm -f lib.so main .DS_Store

@@ -3,7 +3,7 @@ import "./vender"
 // import "fmt"
 
 func main() {
-	vender.Isprimary(10);
+	// vender.Isprimary(10);
 	// var a = vender.ReturnMin(10,15)
 	// fmt.Println(a)
 	// vender.ShowYangHuiTriangle(6);
@@ -11,4 +11,8 @@ func main() {
 	// vender.ShowMin(10,11);
 	// vender.ShowTemp();
 	// vender.TestSlice();
+	// vender.TestMap();
+	// vender.TestInterface();
+	// vender.TestChan();
+
 }
