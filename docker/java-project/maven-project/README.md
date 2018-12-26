@@ -4,6 +4,10 @@
 - 项目使用maven 打包, pom.xml 文件必须在主目录下
 - 可以直接用jar 命令运行起来
 
+想法：
+- 由于maven项目 `--spring.profiles.active=$profileenv` 根据最后一个参数可以切换具体执行环境，所以此文有根据环境变量，判断具体读取哪一个配置项的功能
+
+
 目录结构
 ```
 keith@Keith:~/web/java/docker/cms$ tree -L 3
@@ -55,7 +59,6 @@ keith@Keith:~/web/java/docker/cms$ tree -L 3
 `cd 项目目录`
 `mvn clean install` //生成可执行文件
 `docker build  -f Dockerfile -t registry.***.com/java/frontend:dev-0.0.2 .` // docker-compose 需要
-
 
 ### 需要增加的文件
 docker-compose.yml
