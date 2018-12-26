@@ -5,6 +5,38 @@
 - 项目使用node 编译，如果本地不需要编译，可以直接执行第二步
 - 代码已经开发完毕
 
+### 目录结构
+```
+keith@Keith:~/web/java/docker/cms-frontend$ tree -L 2
+.
+├── Dockerfile   //增加文件
+├── README.md
+├── build
+│   ├── build.js
+│   ├── check-versions.js
+│   ├── config.js
+│   ├── dev-client.js
+│   ├── dev-server.js
+│   ├── env.js
+│   ├── utils.js
+│   ├── vue-loader.conf.js
+│   ├── webpack.base.conf.js
+│   ├── webpack.dev.conf.js
+│   └── webpack.prod.conf.js
+├── conf
+├── config
+│   ├── dev.env.js
+│   ├── index.js
+│   └── prod.env.js
+├── default.conf    //增加文件
+├── dist   //打包生成文件
+│   ├── index.html
+│   └── static
+├── docker-compose.yml  //增加文件
+├── index.html
+├── project.yml
+```
+
 ### 步骤
 此处 docker 安装步骤省略
 
@@ -101,5 +133,3 @@ ADD ./ /usr/share/nginx/html
 ADD default.conf /etc/nginx/conf.d/default.conf
 ```
 
-## 普通Java后端项目docker 容器化
-待定
