@@ -56,6 +56,6 @@ gitpull
 check "pull-finish" "pull-failure"
 gitaddpush "$1"
 check "push-finish" "push-failure"
-# sendmail "print23@126.com"
-# check "mail-send-finish" "mail-send-failure"
+sendmail "print23@126.com"
+check "mail-send-finish" "mail-send-failure"
 
