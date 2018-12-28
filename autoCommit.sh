@@ -28,7 +28,10 @@ gitpull(){
 	cd $BASE_PATH && git pull origin develop
 }
 gitaddpush(){
-	git add . && git commit -m $1 && git push origin develop
+	git add . && git commit -m "$1" && git push origin develop
+}
+sendmail(){
+	git log -1 | mail -s "git auto commit successfully!" $1
 }
 check(){
 	local SUCCESSMSG=$1
@@ -50,23 +53,9 @@ BASE_PATH=$(cd "$(dirname "$0")";pwd)
 
 echo $BASE_PATH 
 gitpull
-check "git-pull-finish" "git-pull-failure"
-gitaddpush $1
-# cd $BASE_PATH && git pull origin develop
-# if [[ $? -ne 0 ]];then
-# 	color_msg red "git pull failure"
-#     exit 1
-# fi
-# color_msg green "git pull finish"
-# git add . && git commit -m "git auto commit" && git push origin develop
-# if [[ $? -ne 0 ]];then
-# 	color_msg green "git push failure"
-#     exit 1
-# fi
-# color_msg green "git push finish"
-# git log -1 | mail -s "git auto commit successfully!" print23@126.com
-# if [[ $? -ne 0 ]];then
-# 	color_msg green "send mail failure"
-#     exit 1
-# fi
-# color_msg green "send mail finish"
+check "pull-finish" "pull-failure"
+gitaddpush "$1"
+check "push-finish" "push-failure"
+# sendmail "print23@126.com"
+# check "mail-send-finish" "mail-send-failure"
+
