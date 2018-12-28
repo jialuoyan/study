@@ -24,24 +24,49 @@ color_msg(){
     echo -en "$OFFSET [$COLOR $MSG $NORMAL"
     echo     "]"
 }
+gitpull(){
+	cd $BASE_PATH && git pull origin develop
+}
+gitaddpush(){
+	git add . && git commit -m $1 && git push origin develop
+}
+check(){
+	local SUCCESSMSG=$1
+	local ERRORMSG=$2
+	if [[ $? -ne 0 ]];then
+		color_msg red $ERRORMSG
+	    exit 1
+	fi
+	color_msg green $SUCCESSMSG
+}
+
+if [[ $# -ne 1 ]];then echo "
+1.commit content: $1 
+ "
+exit 1
+fi
 
 BASE_PATH=$(cd "$(dirname "$0")";pwd)
+
 echo $BASE_PATH 
-cd $BASE_PATH && git pull origin develop
-if [[ $? -ne 0 ]];then
-	color_msg red "git pull failure"
-    exit 1
-fi
-color_msg green "git pull finish"
-git add . && git commit -m "git auto commit" && git push origin develop
-if [[ $? -ne 0 ]];then
-	color_msg green "git push failure"
-    exit 1
-fi
-color_msg green "git push finish"
-git log -1 | mail -s "git auto commit successfully!" print23@126.com
-if [[ $? -ne 0 ]];then
-	color_msg green "send mail failure"
-    exit 1
-fi
-color_msg green "send mail finish"
+gitpull
+check "git-pull-finish" "git-pull-failure"
+gitaddpush $1
+# cd $BASE_PATH && git pull origin develop
+# if [[ $? -ne 0 ]];then
+# 	color_msg red "git pull failure"
+#     exit 1
+# fi
+# color_msg green "git pull finish"
+# git add . && git commit -m "git auto commit" && git push origin develop
+# if [[ $? -ne 0 ]];then
+# 	color_msg green "git push failure"
+#     exit 1
+# fi
+# color_msg green "git push finish"
+# git log -1 | mail -s "git auto commit successfully!" print23@126.com
+# if [[ $? -ne 0 ]];then
+# 	color_msg green "send mail failure"
+#     exit 1
+# fi
+# color_msg green "send mail finish"
