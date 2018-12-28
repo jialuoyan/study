@@ -13,8 +13,8 @@ if [[ $? -ne 0 ]];then
     exit 1
 fi
 echo "git add & push finish"
-git log -1 | mail -s "git auto commit successfully!" print23@126.com
-if [[ $? -ne 0 ]];then
-    exit 1
-fi
-echo "send mail finish"
+# git log -1 | mail -s "git auto commit successfully!" print23@126.com
+# if [[ $? -ne 0 ]];then
+#     exit 1
+# fi
+# echo "send mail finish"
