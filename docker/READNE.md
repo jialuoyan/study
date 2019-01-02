@@ -1,4 +1,6 @@
 
+# docker 
+docker COMMAND --help 查看具体详情
 ## docker run [command]
 命令格式：docker run [OPTIONS] IMAGE [COMMAND] [ARG...]
 Usage: Run a command in a new container
@@ -43,6 +45,7 @@ Usage: Run a command in a new container
 	- docker run -t -i -p 8090:80 image // 以image 镜像启动一个容器，将本机的8090端口映射到容器的80端口
 	- docker run -p 81:80 --name mynginx -v $PWD/web:/www -d nginx //以nginx 镜像运行一个container ，并将当前目录下的web目录挂载到/www目录，将本机 81端口映射到container 80端口
 	- docker run --rm -v $PWD/web:/www -w /data --entrypoint sh eureka-agent:dev-1.0.2 -c "/alpha.sh composer install" //将本目录与容器 /www 目录共享，/data 作为工作目录，容器启动时，执行 /alpha.sh composer install 命令
+- 更多信息参考： https://docs.docker.com/engine/reference/commandline/run/
 
 ## docker exec [command]
 命令格式：docker exec [OPTIONS] IMAGE [COMMAND] [ARG...]
@@ -77,11 +80,71 @@ Usage: Run a command in a new container
 查看当前运行容器
 
 ## docker kill 
-停止容器
+Usage:  docker kill [OPTIONS] CONTAINER [CONTAINER...]
+Kill one or more running containers
+
+## docker search
+Usage:  docker search [OPTIONS] TERM
+Search the Docker Hub for images
+- 部分示例
+	- docker search php
+
+## docker pull
+Usage:  docker pull [OPTIONS] NAME[:TAG|@DIGEST]
+Pull an image or a repository from a registry
+- 部分示例
+	- docker pull php
+
+## docker login
+Usage:	docker login [OPTIONS] [SERVER]
+- 部分示例
+	- docker login -u test -p *** ip
+
+## docker tag
+Usage:	docker tag SOURCE_IMAGE[:TAG] TARGET_IMAGE[:TAG]
+- 部分示例
+	- docker tag print23/screen:0.0.1  test/screen:0.0.1
+
+## docker push
+Usage:	docker push [OPTIONS] NAME[:TAG]
+- 部分示例
+	- docker push test/screen:0.0.1 (push 前需要先docker login)
+
+## docker stats
+查看容器运行状态
 
 ## 部分常用命令
 ```
 docker ps -a //查看所有的容器
 docker rmi `docker images | grep none | awk '{print $3}'` //删除所有临时生成的 image
 docker rm `docker ps -a -q` //删除所有 container
+```
+
+# docker-compoae
+Define and run multi-container applications with Docker
+官方文档地址：https://docs.docker.com/compose/reference/overview/
+
+## docker-compose
+- 常用选项说明
+    - -f, --file FILE      Specify an alternate compose file  (default: docker-compose.yml)
+    - -p, --project-name NAME
+- docker-compose.yml 文件
+```
+webapp:
+  image: examples/web
+  ports:
+  	- 30124:30124/tcp
+    - 8124:80/tcp
+  volumes:
+    - ./:/data/web_data/alpha_framework/apps/web:rw
+```
+	- environment //环境变量
+	- ports //端口号
+	- volumes //文件映射目录
+	-
+
+- 部分示例
+```
+docker-compose -f docker-compose.yml -f docker-compose.local.yml up // 容器启动
+docker-compose -f docker-compose.yml  down //容器停止
 ```
