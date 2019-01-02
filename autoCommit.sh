@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # 自动提交git & 邮件发送
+# bash autoCommit.sh "提交注释"
 
 #color Function
 color_msg(){
@@ -31,7 +32,7 @@ gitaddpush(){
 	git add . && git commit -m "$1" && git push origin develop
 }
 sendmail(){
-	git log -1 | mail -s "git auto commit successfully!" $1
+	git log -1 | mail -s "git auto commit" $1
 }
 check(){
 	local SUCCESSMSG=$1
