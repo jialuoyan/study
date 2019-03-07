@@ -1,0 +1,25 @@
+{
+    "name": "phpexcel use",
+    "description": "generage excel",
+    "keywords": ["excel", "php"],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "PHPOffice/PhpSpreadsheet": "1.6.0",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+          "app\\": "\\"
+        }
+    }
+}
