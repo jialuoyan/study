@@ -20,3 +20,6 @@ git config --global user.email
 最后检查下邮箱是否正确
 
 2. 
+```
+git checkout -- . 清除本地所有修改
+```
