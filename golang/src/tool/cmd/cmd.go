@@ -16,7 +16,7 @@ var cmdRoot = &cobra.Command{
 	Use:   "tool",
 	Short: "this is a tool",
 	PersistentPreRun: func(cmd *cobra.Command, args []string) {
-	    fmt.Println("all command will print this string")
+	    // fmt.Println("all command will print this string")
 	},
 }
 
